@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Header from "../Header/Header";
+import { useNavigate } from "react-router-dom";
+
+
 
 const profiles = [
   {
@@ -24,9 +27,15 @@ const profiles = [
 
 const HomePage = () => {
 
+  const navigate = useNavigate();
+
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center absolute inset-0 -z-10 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
-      <Header />
+    <div className="flex flex-col items-center">
+    <Header onClick={goToLogin} name="Login"/>
     <div className="flex flex-col md:flex-row items-center gap-4 p-4 bg-gray-800 rounded mb-5 float-right">
       {/* Availability Dropdown */}
       <div className="relative">
@@ -53,11 +62,11 @@ const HomePage = () => {
         </button>
       </div>
     </div>
-      <div className="w-full max-w-3xl space-y-6">
+      <div className="w-full max-w-3xl space-y-6 my-4">
         {profiles.map((profile, index) => (
           <div
             key={index}
-            className="bg-gray-800 p-4 rounded flex justify-between items-center"
+            className="backdrop-blur-md bg-white/10 border border-white/30 rounded-xl p-4 rounded flex gap-x-6 items-center text-white"
           >
             <div>
                  <img src="/login.png" className='w-20 h-20 rounded-full' alt="Login" />
@@ -76,7 +85,7 @@ const HomePage = () => {
             </div>
             <button
             //   onClick={handleRequest}
-              className="bg-teal-500 px-4 py-2 rounded hover:bg-teal-600"
+              className="bg-teal-500 px-4 py-2 rounded hover:bg-teal-600 float-right"
             >
               Request
             </button>
